@@ -5,7 +5,7 @@ const jsdom = require("jsdom").JSDOM,
     resources: "usable"
   };
 const { getConfig, outDir } = require("./utils");
-const { getRepos, getUser } = require("./api");
+const { getRepos, getUser,getUserReadMe, getRepoReadMe } = require("./api");
 
 function convertToEmoji(text) {
   if (text == null) return;
@@ -84,6 +84,18 @@ module.exports.updateHTML = (username, opts) => {
                         </section>
                         </a>`;
           }
+
+          // const got = require("got");
+
+          // const res = await got(`https://raw.githubusercontent.com/${username}/${username}/main/README.md`);
+          const ReadMeTest = await getUserReadMe(username);
+          let readElement = document.getElementById("markdown_section"); 
+          console.log(ReadMeTest);
+          readElement.innerHTML += ReadMeTest;
+
+
+          //========== Populate User Info
+
           const user = await getUser(username);
           document.title = user.login;
           var icon = document.createElement("link");

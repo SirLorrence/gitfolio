@@ -66,7 +66,20 @@ async function getUser(username) {
   return JSON.parse(res.body);
 }
 
+// Gets Readme Markdowns returns the raw text
+async function getUserReadMe(username){
+  const res = await got(`https://raw.githubusercontent.com/${username}/${username}/main/README.md`);
+  return res.body;
+
+}
+async function getRepoReadMe(username,repoName){
+  const res = await got(`https://raw.githubusercontent.com/${username}/${repoName}/main/README.md`);
+  return res.body;
+}
+
 module.exports = {
   getRepos,
-  getUser
+  getUser,
+  getUserReadMe,
+  getRepoReadMe
 };

@@ -21,6 +21,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://unpkg.com/magic-grid/dist/magic-grid.min.js"></script>
+      <!-- For Markdown -->
+      <script type="module" src="https://md-block.verou.me/md-block.js"></script>
     <link rel="stylesheet" href="index.css" />
   </head>
 
@@ -37,6 +39,15 @@
       <div id="about"></div>
     </div>
     <div id="display">
+      <div id="ReadMe">
+        <h1>About.</h1>  
+        <md-block>
+         <div id="markdown_section">
+          <!-- Space so the first line include -->
+
+         </div>
+        </md-block>
+      </div>
       <div id="work">
         <h1>Work.</h1>
         <div class="projects" id="work_section"></div>
@@ -118,4 +129,5 @@
       });
     </script>
   </body>
+
 </html>
