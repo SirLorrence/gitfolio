@@ -29,24 +29,30 @@ async function getRepos(username, opts = {}) {
   }
 
   do {
-    let requestUrl = `https://api.github.com/users/${username}/repos?per_page=100&page=${page++}&type=${type}`;
-    if (sort && sort !== "star") {
-      requestUrl += `&sort=${sort}&direction=${order}`;
-    }
+    //let requestUrl = `https://api.github.com/users/${username}/repos?per_page=100&page=${page++}&type=${type}`;
+    // thanks to https://github.com/egoist/gh-pinned-repos  only get pinned repos
+    let requestUrl = `https://gh-pinned-repos.egoist.dev/?username=${username}`; 
+    // if (sort && sort !== "star") {
+    //   requestUrl += `&sort=${sort}&direction=${order}`;
+    // }
     tempRepos = await got(requestUrl);
     tempRepos = JSON.parse(tempRepos.body);
+    // console.log(tempRepos);
     repos = repos.concat(tempRepos);
-  } while (tempRepos.length == 100);
+    // console.log(repos); // Works
+  } while (tempRepos.length == null);
+  
+  // console.log(repos);
 
-  if (sort == "star") {
-    repos = repos.sort(function(a, b) {
-      if (order == "desc") {
-        return b.stargazers_count - a.stargazers_count;
-      } else {
-        return a.stargazers_count - b.stargazers_count;
-      }
-    });
-  }
+  // if (sort == "star") {
+  //   repos = repos.sort(function(a, b) {
+  //     if (order == "desc") {
+  //       return b.stargazers_count - a.stargazers_count;
+  //     } else {
+  //       return a.stargazers_count - b.stargazers_count;
+  //     }
+  //   });
+  // }
 
   return repos;
 }

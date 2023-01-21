@@ -42,21 +42,28 @@ module.exports.updateHTML = (username, opts) => {
         try {
           console.log("Building HTML/CSS...");
           const repos = await getRepos(username, opts);
+        //  console.log(repos)
 
           for (var i = 0; i < repos.length; i++) {
             let element;
-            if (repos[i].fork == false) {
-              element = document.getElementById("work_section");
-            } else if (includeFork == true) {
-              document.getElementById("forks").style.display = "block";
-              element = document.getElementById("forks_section");
-            } else {
-              continue;
-            }
+            // console.log(i)
+            element = document.getElementById("work_section"); 
+            
+            //====== Hard coded for pinned repros
+
+            // if (repos[i].fork == false) {
+            //   element = document.getElementById("work_section");
+            // } else if (includeFork == true) {
+            //   document.getElementById("forks").style.display = "block";
+            //   element = document.getElementById("forks_section");
+            // } else {
+            //   continue;
+            // }
+            // console.log(repos)
             element.innerHTML += `
-                        <a href="${repos[i].html_url}" target="_blank">
+                        <a href="${repos[i].link}" target="_blank">
                         <section>
-                            <div class="section_title">${repos[i].name}</div>
+                            <div class="section_title">${repos[i].repo}</div>
                             <div class="about_section">
                             <span style="display:${
                               repos[i].description == undefined
@@ -72,12 +79,7 @@ module.exports.updateHTML = (username, opts) => {
                                 };"><i class="fas fa-code"></i>&nbsp; ${
               repos[i].language
             }</span>
-                                <span><i class="fas fa-star"></i>&nbsp; ${
-                                  repos[i].stargazers_count
-                                }</span>
-                                <span><i class="fas fa-code-branch"></i>&nbsp; ${
-                                  repos[i].forks_count
-                                }</span>
+
                             </div>
                         </section>
                         </a>`;
