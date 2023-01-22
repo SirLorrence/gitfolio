@@ -30,6 +30,55 @@ function convertToEmoji(text) {
   }
 }
 
+function createRepoPage(username,repoName){
+  // if dir is null create a new one
+  if(!fs.existsSync(`${outDir}/projects/`)){
+    fs.mkdirSync(`${outDir}/projects`,
+    {recursive:true},
+    err =>{}
+    );
+  }
+
+  let fileOutDir = `${outDir}/projects/${repoName}.html`;
+  fs.copyFile(
+    `${__dirname}/assets/blog/blogTemplate.html`,
+    fileOutDir,
+    err =>{
+      if(err) throw err;
+      // JSDOM parses and interacts with HTML
+      jsdom 
+      .fromFile(fileOutDir,options)
+      .then(async function(dom) {
+        // adding style ref line
+        let window = dom.window, document = window.document;
+        let style = document.createElement("link");
+        style.setAttribute("rel","stylesheet");
+        style.setAttribute("href", "../../index.css");
+        document.getElementsByTagName("head")[0].appendChild(style);
+
+        // setting page elements
+        document.getElementsByTagName("title")[0].textContent = repoName;
+        const repoText = await getRepoReadMe(username,repoName);
+        document.getElementById("project").textContent = repoText;
+
+      }
+
+      // fs.writeFile(
+      //   fileOutDir,
+      //   "<!DOCTYPE html>" + window.document.documentElement.outerHTML,
+      //   async function(error){
+      //     if(error) throw error;
+      //   }
+      // )
+
+      );
+    }
+  
+  )
+}
+
+//============ Actcul population
+
 module.exports.updateHTML = (username, opts) => {
   const { includeFork, twitter, linkedin, medium, dribbble } = opts;
   //add data to assets/index.html
@@ -83,14 +132,14 @@ module.exports.updateHTML = (username, opts) => {
                             </div>
                         </section>
                         </a>`;
+            //Create Page
+
           }
 
-          // const got = require("got");
+          //========= Populate User About Readme
 
-          // const res = await got(`https://raw.githubusercontent.com/${username}/${username}/main/README.md`);
           const ReadMeTest = await getUserReadMe(username);
           let readElement = document.getElementById("markdown_section"); 
-          console.log(ReadMeTest);
           readElement.innerHTML += ReadMeTest;
 
 
