@@ -25,10 +25,11 @@ program
   .option("-f, --fork", "includes forks with repos")
   .option("-s, --sort [sort]", "set default sort for repository", "created")
   .option("-o, --order [order]", "set default order on sort", "asc")
-  .option("-w, --twitter [username]", "specify twitter username")
+  .option("-w, --steam [username]", "specify steam username")
   .option("-l, --linkedin [username]", "specify linkedin username")
   .option("-m, --medium [username]", "specify medium username")
-  .option("-d, --dribbble [username]", "specify dribbble username")
+  .option("-d, --discord [username]", "specify discord username")
+  .option("-r, --resume [username]", "resume link")
   .action(buildCommand);
 
 program

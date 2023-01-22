@@ -15,10 +15,11 @@ async function updateCommand() {
     order: data[0].order,
     includeFork: data[0].includeFork,
     types: data[0].types,
-    twitter: data[0].twitter,
+    steam: data[0].steam,
     linkedin: data[0].linkedin,
     medium: data[0].medium,
-    dribbble: data[0].dribbble
+    discord: data[0].discord,
+    resume: data[0].resume
   };
   updateHTML(username, opts);
 }

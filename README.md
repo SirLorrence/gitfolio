@@ -1,4 +1,10 @@
-### archived in favor of v2 release soon ;)
+### Heavly Modified version of Gitfolio
+
+## My Changes
+
+- Gets your Project ReadMe to populate your header
+- Changed Social Links
+- Resume
 
 <img src="https://i.imgur.com/eA6clZr.png">
 
@@ -13,39 +19,6 @@ Check out this [live demo](https://imfunniee.github.io/gitfolio/) to see gitfoli
 
 # Getting Started
 
-### Let's Install
-
-Install gitfolio
-
-```sh
-npm i gitfolio -g
-```
-
-### Let's Build
-
-Using the UI
-
-```sh
-$ gitfolio ui
-```
-
-> Tip: You can use ui to create new blogs and for updating your folio too.
-
-or
-
-```sh
-gitfolio build <username>
-```
-
-`<username>` is your username on github. This will build your website using your GitHub username and put it in the `/dist` folder.
-
-To run your website use `run` command, Default port is 3000
-
-```sh
-gitfolio run -p [port]
-```
-
-🎉 Congrats, you just made yourself a personal website!
 
 ### Let's Customize
 
@@ -54,24 +27,24 @@ gitfolio run -p [port]
 To include forks on your personal website just provide `-f` or `--fork` argument while building
 
 ```sh
-$ gitfolio build <username> -f
+$ node bin/gitfolio.js build <username> -f
 ```
-
+<!-- 
 #### Sorting Repos
 
 To sort repos provide `--sort [sortBy]` argument while building. Where `[sortBy]` can be `star`, `created`, `updated`, `pushed`,`full_name`. Default: `created`
 
 ```sh
-$ gitfolio build <username> --sort star
-```
+$ node bin/gitfolio.js --sort star
+``` -->
 
-#### Ordering Repos
+<!-- #### Ordering Repos
 
 To order the sorted repos provide `--order [orderBy]` argument while building. Where `[orderBy]` can be `asc` or `desc`. Default: `asc`
 
 ```sh
 $ gitfolio build <username> --sort star --order desc
-```
+``` -->
 
 #### Customize Themes
 
@@ -85,7 +58,7 @@ Themes are specified using the `--theme [theme-name]` flag when running the `bui
 For example, the following command will build the website with the dark theme
 
 ```sh
-$ gitfolio build <username> --theme dark
+$ node bin/gitfolio.js build <username> --theme dark
 ```
 
 #### Customize background image
@@ -100,10 +73,10 @@ You could also add in your custom CSS inside `index.css` to give it a more perso
 
 #### Add Social Media links on your profile
 
-Twitter, LinkedIn, Medium & Dribbble links to your profile while building
+Steam, LinkedIn, Medium, Discord & Resume links to your profile while building
 
 ```sh
-gitfolio build <username> --twitter <twitter_username> --linkedin <linkedin_username> --medium <medium_username> --dribbble <dribbble_username>
+node bin/gitfolio.js build <username> --steam <steam_username> --linkedin <linkedin_username> --medium <medium_username> --discord <discord_username> --resume <resume_link>
 ```
 
 ### Let's Publish
@@ -117,7 +90,7 @@ Go To `username.github.io` your site should be up!!
 To update your info, simply run
 
 ```sh
-$ gitfolio update
+$ node bin/gitfolio.js update
 ```
 
 or use the `Update` options in gitfolio's UI
@@ -126,7 +99,7 @@ This will update your info and your repository info.
 
 To Update background or theme you need to run `build` command again.
 
-### Add a Blog
+<!-- ### Add a Blog
 
 To add your first blog use the UI.
 
@@ -154,9 +127,9 @@ Blog's default JSON Format
   "top_image": "https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450", // main image of blog
   "visible": true // don't worry about this
 }
-```
+``` -->
 
-### Follow me on twitter for more updates [@imfunnieee](https://twitter.com/imfunnieee)
+### Follow imfunnieee on twitter for more updates [@imfunnieee](https://twitter.com/imfunnieee)
 
 ### License
 

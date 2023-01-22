@@ -77,10 +77,11 @@ async function buildCommand(username, program) {
     order: program.order,
     includeFork: program.fork ? true : false,
     types,
-    twitter: program.twitter,
+    steam: program.steam,
     linkedin: program.linkedin,
     medium: program.medium,
-    dribbble: program.dribbble
+    discord: program.discord,
+    resume: program.resume
   };
 
   await populateConfig(opts);

@@ -6,6 +6,7 @@ const jsdom = require("jsdom").JSDOM,
   };
 const { getConfig, outDir } = require("./utils");
 const { getRepos, getUser,getUserReadMe, getRepoReadMe } = require("./api");
+const { resourceLimits } = require("worker_threads");
 
 function convertToEmoji(text) {
   if (text == null) return;
@@ -80,7 +81,7 @@ function createRepoPage(username,repoName){
 //============ Actcul population
 
 module.exports.updateHTML = (username, opts) => {
-  const { includeFork, twitter, linkedin, medium, dribbble } = opts;
+  const {resume, linkedin, medium, discord, steam} = opts;
   //add data to assets/index.html
   jsdom
     .fromFile(`${__dirname}/assets/index.html`, options)
@@ -185,15 +186,15 @@ module.exports.updateHTML = (username, opts) => {
             user.location
           }</span>
                 <span style="display:${
-                  user.hireable == false || !user.hireable ? "none" : "block"
-                };"><i class="fas fa-user-tie"></i> &nbsp;&nbsp; Available for hire</span>
+                  resume == null ? "none" : "block"
+                };"><i class="fas fa-user-tie"></i> &nbsp;&nbsp;<a href="${resume}">Résumé</a></span>
                 <div class="socials">
                 <span style="display:${
-                  twitter == null ? "none !important" : "block"
-                };"><a href="https://www.twitter.com/${twitter}" target="_blank" class="socials"><i class="fab fa-twitter"></i></a></span>
+                  steam == null ? "none !important" : "block"
+                };"><a href="https://steamcommunity.com/id/${steam}" target="_blank" class="socials"><i class="fab fa-steam"></i></a></span>
                 <span style="display:${
-                  dribbble == null ? "none !important" : "block"
-                };"><a href="https://www.dribbble.com/${dribbble}" target="_blank" class="socials"><i class="fab fa-dribbble"></i></a></span>
+                  discord == null ? "none !important" : "block"
+                };"><a href="https://discordapp.com/users/${discord}" target="_blank" class="socials"><i class="fab fa-discord"></i></a></span>
                 <span style="display:${
                   linkedin == null ? "none !important" : "block"
                 };"><a href="https://www.linkedin.com/in/${linkedin}/" target="_blank" class="socials"><i class="fab fa-linkedin-in"></i></a></span>
